@@ -55,10 +55,12 @@ the [client specific pages](https://singularityhub.github.io/sregistry-cli/clien
 You can clone and tweak, but it's easiest likely to get started with our example
 files and edit them as you need.
 
-### 1. Get to Know CircleCi
+### 1. Get to Know GitLab
 
 We will be working with [GitLab](https://www.gitlab.com) repositories, which have
-a built-in Continuous Integration service.
+a built-in Continuous Integration service. You will need to go to your project base,
+and click on the Settings --> CI/CD and select your "Runners." Typically a runner
+is some external service, or the GitLab shared runners. I chose the shared!
  
 ### 2. Add your Recipe(s)
 
@@ -87,3 +89,5 @@ The basic steps for the [build](.gitlabci/build.sh) are the following:
  - If you add `--cli` then this is telling the build script that you have defined the [needed environment variables](https://circleci.com/docs/2.0/env-vars/) for your [client of choice](https://singularityhub.github.io/sregistry-cli/clients) and you want successful builds to be pushed to your storage endpoint. See [here](https://singularityhub.github.io/sregistry-cli/clients) for a list of current client endpoints, or roll your own!
 
 See the [.gitlab-ci.yml](.gitlab-ci.yml) for examples of this build.sh command (commented out). If there is some cloud service that you'd like that is not provided, please [open an issue](https://www.github.com/singularityhub/sregistry-cli/issues).
+Remember, for different Singularity Registry Client Endpoints, you may need to configure environment
+variables to help authenticate you. Instructions can be found [here](https://code.stanford.edu/help/ci/variables/README#variables).
