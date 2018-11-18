@@ -1,0 +1,36 @@
+before_script:
+  - echo "PWD is $PWD"
+  - apt-get update -qq && apt-get install -y wget
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  - /bin/bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
+  - export PATH=$HOME/conda/bin:$PATH
+  - $HOME/conda/bin/pip install sregistry[all]
+  - chmod u+x .gitlabci/*.sh
+  - /bin/bash .gitlabci/setup.sh
+
+build:
+  script:
+     - echo "PWD is $PWD"
+     - . venv/bin/activate
+     - /bin/bash .gitlabci/build.sh Singularity
+     - mkdir -p build && cp *.simg build
+     - mkdir -p build && cp Singularity* build
+
+      # build the container!
+      # You can add any other sregistry push commands here, and specify a client
+      # (and make sure your define the encrypted environment credentials in gitlab
+      # to push to your storage locations of choice
+
+      # Examples with upload to storage clients defined by sregistry
+      # https://singularityhub.github.io/sregistry-cli/clients
+      # Environment variables must be defined in CI encrypted secrets/settings
+      # https://circleci.com/docs/2.0/env-vars/
+      #- /bin/bash build.sh --uri collection/container --cli google-storage Singularity
+      #- /bin/bash build.sh --uri collection/container --cli google-drive Singularity
+      #- /bin/bash build.sh --uri collection/container --cli globus Singularity
+      #- /bin/bash build.sh --uri collection/container --cli registry Singularity
+
+# Here we will store artifacts
+#deploy:
+#  script:
+#    - bundle exec rubocop
