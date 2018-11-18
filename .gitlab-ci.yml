@@ -1,5 +1,4 @@
 before_script:
-  - echo "PWD is $PWD"
   - apt-get update -qq && apt-get install -y wget
   - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
   - /bin/bash Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/conda
@@ -10,20 +9,22 @@ before_script:
 
 build:
   script:
-     - echo "PWD is $PWD"
      - /bin/bash .gitlabci/build.sh Singularity
-     - mkdir -p build && cp *.simg build
-     - mkdir -p build && cp Singularity* build
 
-      # build the container!
+      # step 1. build the container!
       # You can add any other sregistry push commands here, and specify a client
       # (and make sure your define the encrypted environment credentials in gitlab
       # to push to your storage locations of choice
 
-      # Examples with upload to storage clients defined by sregistry
+     - mkdir -p build && cp *.simg build
+     - mkdir -p build && cp Singularity* build
+
+      # Step 2. Take a look at "artifacts" below and add the paths you want added
+      # You can also add the entire build folder. You can also upload to storage
+      # clients defined by sregistry, here are some examples
       # https://singularityhub.github.io/sregistry-cli/clients
       # Environment variables must be defined in CI encrypted secrets/settings
-      # https://circleci.com/docs/2.0/env-vars/
+      # https://code.stanford.edu/help/ci/variables/README#variables).
       #- /bin/bash build.sh --uri collection/container --cli google-storage Singularity
       #- /bin/bash build.sh --uri collection/container --cli google-drive Singularity
       #- /bin/bash build.sh --uri collection/container --cli globus Singularity
@@ -31,7 +32,7 @@ build:
 
   # This is where you can save job artifacts
   # https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html
-  # You will need to specify the path to each container built above to save.
+  # You can specify the path to containers or the build folder to save.
   # Don't forget to save your recipes too!
   artifacts:
       paths:

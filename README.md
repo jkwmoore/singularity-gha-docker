@@ -1,5 +1,7 @@
 # Singularity Builder GitLab
 
+![.gitlabci/sregistry-gitlab.png](.gitlabci/sregistry-gitlab.png)
+
 This is a simple example of how you can achieve:
 
  - version control of your recipes
