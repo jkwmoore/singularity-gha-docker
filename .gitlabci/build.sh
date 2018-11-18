@@ -132,7 +132,7 @@ if [ -f "$recipe" ]; then
     imagefile="${recipe}.simg"
 
     echo "Creating $imagefile using $recipe..."
-    sudo singularity build $imagefile $recipe
+    singularity build $imagefile $recipe
 
     # If the image is successfully built, test it and upload (examples)
   

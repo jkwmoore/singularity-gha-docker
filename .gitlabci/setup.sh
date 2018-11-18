@@ -1,18 +1,18 @@
 #!/bin/bash
 
-sudo apt-get update && sudo apt-get install -y wget git \
-                                                    build-essential \
-                                                    squashfs-tools \
-                                                    libtool \
-                                                    autotools-dev \
-                                                    libarchive-dev \
-                                                    automake \
-                                                    autoconf \
-                                                    uuid-dev \
-                                                    libssl-dev
+apt-get update && apt-get install -y wget git \
+                                          build-essential \
+                                          squashfs-tools \
+                                          libtool \
+                                          autotools-dev \
+                                          libarchive-dev \
+                                          automake \
+                                          autoconf \
+                                          uuid-dev \
+                                          libssl-dev
 
 
-sudo sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
+sed -i -e 's/^Defaults\tsecure_path.*$//' /etc/sudoers
 
 # Check Python
 
@@ -30,4 +30,4 @@ cd /tmp && \
     cd singularity && \
     ./autogen.sh && \
     ./configure --prefix=/usr/local && \
-    make && sudo make install
+    make && make install
