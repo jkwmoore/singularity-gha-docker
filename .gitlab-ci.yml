@@ -11,7 +11,6 @@ before_script:
 build:
   script:
      - echo "PWD is $PWD"
-     - . venv/bin/activate
      - /bin/bash .gitlabci/build.sh Singularity
      - mkdir -p build && cp *.simg build
      - mkdir -p build && cp Singularity* build
