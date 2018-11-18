@@ -93,5 +93,10 @@ The basic steps for the [build](.gitlabci/build.sh) are the following:
  - If you add `--cli` then this is telling the build script that you have defined the [needed environment variables](https://circleci.com/docs/2.0/env-vars/) for your [client of choice](https://singularityhub.github.io/sregistry-cli/clients) and you want successful builds to be pushed to your storage endpoint. See [here](https://singularityhub.github.io/sregistry-cli/clients) for a list of current client endpoints, or roll your own!
 
 See the [.gitlab-ci.yml](.gitlab-ci.yml) for examples of this build.sh command (commented out). If there is some cloud service that you'd like that is not provided, please [open an issue](https://www.github.com/singularityhub/sregistry-cli/issues).
-Remember, for different Singularity Registry Client Endpoints, you may need to configure environment
+
+### 5. Pull your Container
+If you want to pull from the artifacts folder in GitLab, check out the 
+[Singularity Registry Client](https://www.github.com/singularityhub/sregistry-cli) 
+(at the time of writing has a work in progress to pull images from the GitLab artifacts.)
+Also remember that for different Singularity Registry Client Endpoints, you may need to configure environment
 variables to help authenticate you. Instructions can be found [here](https://code.stanford.edu/help/ci/variables/README#variables).
