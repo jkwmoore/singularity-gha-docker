@@ -29,7 +29,11 @@ build:
       #- /bin/bash build.sh --uri collection/container --cli globus Singularity
       #- /bin/bash build.sh --uri collection/container --cli registry Singularity
 
-# Here we will store artifacts
-#deploy:
-#  script:
-#    - bundle exec rubocop
+  # This is where you can save job artifacts
+  # https://docs.gitlab.com/ee/user/project/pipelines/job_artifacts.html
+  # You will need to specify the path to each container built above to save.
+  # Don't forget to save your recipes too!
+  artifacts:
+      paths:
+        - build/Singularity.simg
+        - build/Singularity

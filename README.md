@@ -58,9 +58,11 @@ files and edit them as you need.
 ### 1. Get to Know GitLab
 
 We will be working with [GitLab](https://www.gitlab.com) repositories, which have
-a built-in Continuous Integration service. You will need to go to your project base,
-and click on the Settings --> CI/CD and select your "Runners." Typically a runner
-is some external service, or the GitLab shared runners. I chose the shared!
+a built-in Continuous Integration service. Note that if you aren't using GitLab.com
+or need to configure or enable runners, you can do this by going to your project page,
+and clicking on the Settings --> CI/CD and selecting your "Runners." Typically a runner
+is some external service, or the GitLab shared runners. I used GitLab.com so the 
+shared runners were already active for me.
  
 ### 2. Add your Recipe(s)
 
