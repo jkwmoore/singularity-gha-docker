@@ -1,7 +1,5 @@
 # Singularity Builder GitLab
 
-![.gitlabci/sregistry-circle.png](.gitlabci/sregistry-circle.png)
-
 This is a simple example of how you can achieve:
 
  - version control of your recipes
