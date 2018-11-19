@@ -95,8 +95,13 @@ The basic steps for the [build](.gitlabci/build.sh) are the following:
 See the [.gitlab-ci.yml](.gitlab-ci.yml) for examples of this build.sh command (commented out). If there is some cloud service that you'd like that is not provided, please [open an issue](https://www.github.com/singularityhub/sregistry-cli/issues).
 
 ### 5. Pull your Container
+
 If you want to pull from the artifacts folder in GitLab, check out the 
-[Singularity Registry Client](https://www.github.com/singularityhub/sregistry-cli) 
-(at the time of writing has a work in progress to pull images from the GitLab artifacts.)
-Also remember that for different Singularity Registry Client Endpoints, you may need to configure environment
-variables to help authenticate you. Instructions can be found [here](https://code.stanford.edu/help/ci/variables/README#variables).
+[Singularity Registry Client](https://www.github.com/singularityhub/sregistry-cli), and 
+specifically the [GitLab client](https://singularityhub.github.io/client-gitlab). The client
+will help you to pull a container stored as an artifact given that you know the job identifier,
+and if you change the job name (default is build) that will need to be provided too!
+See the [GitLab client](https://singularityhub.github.io/client-gitlab) pages for more information
+on how to do this. If you don't want to use GitLab artifacts for deployment, this is okay too!
+Just remember that if you are using Singularity Registry Client (or GitLab for that matter)
+to deploy a container elsewhere, you likely need to configure environment variables to help authenticate you. Instructions can be found [here](https://code.stanford.edu/help/ci/variables/README#variables).
