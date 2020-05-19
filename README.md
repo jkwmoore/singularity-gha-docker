@@ -1,6 +1,8 @@
 # Singularity Builder GitLab
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3834833.svg)](https://doi.org/10.5281/zenodo.3834833)
+
+
 ![.gitlabci/sregistry-gitlab.png](.gitlabci/sregistry-gitlab.png)
 
 This is a simple example of how you can achieve:
