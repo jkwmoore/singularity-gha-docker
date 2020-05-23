@@ -1,4 +1,4 @@
-image: https://gitlab.com/singularityhub/gitlab-ci
+image: singularityware/singularity:gitlab-3.1-slim
 
 build:
   script:
