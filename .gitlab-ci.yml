@@ -1,4 +1,4 @@
-image: singularityware/singularity:gitlab-2.6
+image: singularityware/singularity:gitlab-3.1-slim
 
 build:
   script:
@@ -9,7 +9,7 @@ build:
       # (and make sure your define the encrypted environment credentials in gitlab
       # to push to your storage locations of choice
 
-     - mkdir -p build && cp *.simg build
+     - mkdir -p build && cp *.sif build
      - mkdir -p build && cp Singularity* build
 
       # Step 2. Take a look at "artifacts" below and add the paths you want added
@@ -29,5 +29,5 @@ build:
   # Don't forget to save your recipes too!
   artifacts:
       paths:
-        - build/Singularity.simg
+        - build/Singularity.sif
         - build/Singularity

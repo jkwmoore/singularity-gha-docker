@@ -81,7 +81,8 @@ your [.gitlab-ci.yml](.gitlab-ci.yml).
 
 ### 3. Configure Singularity
 
-The basic steps to [setup](.gitlabci/setup.sh) the build are the following:
+We previously used [setup](.gitlabci/setup.sh) to setup the build, but now use a base image instead.
+The previous instructions are provided for posterity.
 
  - Install Singularity, we use the release 2.6 branch as it was the last to not be written in GoLang. You could of course change the lines in [setup.sh](.gitlabci/setup.sh) to use a specific tagged release, an older version, or development version.
  - Install the sregistry client, if needed. The [sregistry client](https://singularityhub.github.io/sregistry-cli) allows you to issue a command like "sregistry push ..." to upload a finished image to one of your cloud / storage endpoints. By default, the push won't happen, and you will just build an image using the CI.

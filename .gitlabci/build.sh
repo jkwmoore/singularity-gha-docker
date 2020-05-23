@@ -6,7 +6,7 @@
 #        build.sh --uri collection-name/container-name --cli registry
 #        build.sh Singularity
 
-# Copyright (C) 2017-2018 Vanessa Sochat.
+# Copyright (C) 2017-2020 Vanessa Sochat.
 
 # This program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU Affero General Public License as published by
@@ -129,7 +129,7 @@ fi
 
 if [ -f "$recipe" ]; then
 
-    imagefile="${recipe}.simg"
+    imagefile="${recipe}.sif"
 
     echo "Creating $imagefile using $recipe..."
     singularity build $imagefile $recipe
