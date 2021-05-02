@@ -1,4 +1,6 @@
-image: singularityware/singularity:gitlab-3.1-slim
+image:
+  name: quay.io/singularity/singularity:v3.7.3
+  entrypoint: ["/bin/sh", "-c"]
 
 build:
   script:
