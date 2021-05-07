@@ -8,7 +8,7 @@ This is a simple example of how you can achieve:
  - version control of your recipes
  - versioning to include image hash *and* commit id
  - build of associated container and
- - push to a storage endpoint (or Github artifact)
+ - push to a storage endpoint (or ~~GitLab~~ Github artifact)
 
 for a reproducible build workflow.
 
@@ -17,7 +17,7 @@ for a reproducible build workflow.
 ~~GitLab~~ Github, by way of easy integration with continuous integration, is an easy way
 to have a workflow set up where multiple people can collaborate on a container recipe,
 the recipe can be tested (with whatever testing you need), discussed in pull requests,
-and then finally pushed to be a ~~GitLab~~ Github artifact, to your storage of choice 
+and then finally pushed to be a ~~GitLab~~ Github artifact, to your storage of choice
 or to Singularity Registry.
 
 **Why should I use this instead of a service?**
@@ -26,14 +26,14 @@ You could use a remote builder, but if you do the build in a continuous integrat
 service you get complete control over it. This means everything from the version of
 Singularity to use, to the tests that you run for your container. You have a lot more
 freedom in the rate of building, and organization of your repository, because it's you
-that writes the configuration. Although the default would work for most, you can 
-edit the build, setup, and circle configuration file in the 
+that writes the configuration. Although the default would work for most, you can
+edit the build, setup, and circle configuration file in the
 [.gitlabci](.gitlabci) folder to fit your needs.
 
 ## Quick Start
 
 Add your Singularity recipes to this repository, and edit the build commands in
-the [build.sh](.gitlabci/build.sh) file. This is where you can specify endpoints 
+the [build.sh](.gitlabci/build.sh) file. This is where you can specify endpoints
 (Singularity Registry, Dropbox, Google Storage, AWS) along with container names
 (the uri) and tag. You can build as many recipes as you like, just add another line!
 
@@ -58,20 +58,17 @@ the [client specific pages](https://singularityhub.github.io/sregistry-cli/clien
 You can clone and tweak, but it's easiest likely to get started with our example
 files and edit them as you need.
 
-### 1. ~~Get to Know GitLab
+### 1. Get to Know ~~GitLab~~ Github Actions
 
-~~We will be working with [GitLab](https://www.gitlab.com) repositories, which have
-a built-in Continuous Integration service. Note that if you aren't using GitLab.com
-or need to configure or enable runners, you can do this by going to your project page,
-and clicking on the Settings --> CI/CD and selecting your "Runners." Typically a runner
-is some external service, or the GitLab shared runners. I used GitLab.com so the 
-shared runners were already active for me.~~
- 
+Github has a built-in Continuous Integration service called Github Actions you should be able to use for free. You can get started here https://github.com/features/actions and take a look at the ``.github\workflows\build.yml``.
+
+Artifacts will be found in the ``/home/runner/work/REPO-NAME/REPO-NAME/`` directory.
+
 ### 2. Add your Recipe(s)
 
-For the example here, we have a single recipe named "Singularity" that is provided 
-as an input argument to the [build script](.gitlabci/build.sh). You could add another 
-recipe, and then of course call the build to happen more than once. 
+For the example here, we have a single recipe named "Singularity" that is provided
+as an input argument to the [build script](.gitlabci/build.sh). You could add another
+recipe, and then of course call the build to happen more than once.
 The build script will name the image based on the recipe, and you of course
 can change this. Just write the path to it (relative to the repository base) in
 your [.gitlab-ci.yml](.gitlab-ci.yml).
@@ -82,9 +79,10 @@ your [.gitlab-ci.yml](.gitlab-ci.yml).
 We previously used [setup](.gitlabci/setup.sh) to setup the build, but now use a base image instead.
 The previous instructions are provided for posterity.
 
-The current Github Action is using the quay.io/singularity/singularity:v3.7.3 image - at present the slim images are missing /bin/bash - the version can be changed at will as per your production environment versioning.
+ - ~~Install Singularity, we use the release 2.6 branch as it was the last to not be written in GoLang. You could of course change the lines in [setup.sh](.gitlabci/setup.sh) to use a specific tagged release, an older version, or development version.~~
 
- ~~- Install Singularity, we use the release 2.6 branch as it was the last to not be written in GoLang. You could of course change the lines in [setup.sh](.gitlabci/setup.sh) to use a specific tagged release, an older version, or development version.
+- The current Github Action is using the ``quay.io/singularity/singularity:v3.7.3`` image - at present the slim images are missing /bin/bash - the version can be changed at will as per your production environment versioning.
+
  - Install the sregistry client, if needed. The [sregistry client](https://singularityhub.github.io/sregistry-cli) allows you to issue a command like "sregistry push ..." to upload a finished image to one of your cloud / storage endpoints. By default, the push won't happen, and you will just build an image using the CI.
 
 ### 4. Configure the Build
@@ -98,16 +96,6 @@ The basic steps for the [build](.gitlabci/build.sh) are the following:
 
 See the [.gitlab-ci.yml](.gitlab-ci.yml) for examples of this build.sh command (commented out). If there is some cloud service that you'd like that is not provided, please [open an issue](https://www.github.com/singularityhub/sregistry-cli/issues).
 
-### 5. Pull your Container
+### 5. Pull / Download your Container
 
-~~If you want to pull from the artifacts folder in GitLab, check out the 
-[Singularity Registry Client](https://www.github.com/singularityhub/sregistry-cli), and 
-specifically the [GitLab client](https://singularityhub.github.io/client-gitlab). The client
-will help you to pull a container stored as an artifact given that you know the job identifier,
-and if you change the job name (default is build) that will need to be provided too!
-See the [GitLab client](https://singularityhub.github.io/client-gitlab) pages for more information
-on how to do this. If you don't want to use GitLab artifacts for deployment, this is okay too!
-Just remember that if you are using Singularity Registry Client (or GitLab for that matter)
-to deploy a container elsewhere, you likely need to configure environment variables to help authenticate you. Instructions can be found [here](https://code.stanford.edu/help/ci/variables/README#variables).~~
-
-You can access the artifacts from the Actions tab, under the build action for any given run.
+You can access the artifacts from the Actions tab, under the build action for any given run. You may wish to edit the ``build.yml`` to export individual .sif images rather than a zip file of artifacts.
