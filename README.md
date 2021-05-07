@@ -60,9 +60,9 @@ files and edit them as you need.
 
 ### 1. Get to Know ~~GitLab~~ Github Actions
 
-Github has a built-in Continuous Integration service called Github Actions you should be able to use for free. You can get started here https://github.com/features/actions and take a look at the .github\workflows\build.yml.
+Github has a built-in Continuous Integration service called Github Actions you should be able to use for free. You can get started here https://github.com/features/actions and take a look at the ``.github\workflows\build.yml``.
 
-Artifacts will be found in the /home/runner/work/REPO-NAME/REPO-NAME/ directory.
+Artifacts will be found in the ``/home/runner/work/REPO-NAME/REPO-NAME/`` directory.
 
 ### 2. Add your Recipe(s)
 
@@ -81,7 +81,7 @@ The previous instructions are provided for posterity.
 
  - ~~Install Singularity, we use the release 2.6 branch as it was the last to not be written in GoLang. You could of course change the lines in [setup.sh](.gitlabci/setup.sh) to use a specific tagged release, an older version, or development version.~~
 
-- The current Github Action is using the ``quay.io/singularity/singularity:v3.7.3 image`` - at present the slim images are missing /bin/bash - the version can be changed at will as per your production environment versioning.
+- The current Github Action is using the ``quay.io/singularity/singularity:v3.7.3`` image - at present the slim images are missing /bin/bash - the version can be changed at will as per your production environment versioning.
 
  - Install the sregistry client, if needed. The [sregistry client](https://singularityhub.github.io/sregistry-cli) allows you to issue a command like "sregistry push ..." to upload a finished image to one of your cloud / storage endpoints. By default, the push won't happen, and you will just build an image using the CI.
 
@@ -98,4 +98,4 @@ See the [.gitlab-ci.yml](.gitlab-ci.yml) for examples of this build.sh command (
 
 ### 5. Pull / Download your Container
 
-You can access the artifacts from the Actions tab, under the build action for any given run. You may wish to edit the build.yml to export individual .sif images rather than a zip file of artifacts.
+You can access the artifacts from the Actions tab, under the build action for any given run. You may wish to edit the ``build.yml`` to export individual .sif images rather than a zip file of artifacts.
