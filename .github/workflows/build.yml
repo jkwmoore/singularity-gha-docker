@@ -1,0 +1,12 @@
+name: Build
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest 
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run correct docker and build
+        uses: docker://quay.io/singularity/singularity:v3.7.3
+        with:
+          entrypoint: /bin/bash
+          args: -c "chmod 755 -R /github/workspace/ && ls -al /github/workspace/.gitlabci/ && /github/workspace/.gitlabci/build.sh Singularity"   
