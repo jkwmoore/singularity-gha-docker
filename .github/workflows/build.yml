@@ -9,4 +9,12 @@ jobs:
         uses: docker://quay.io/singularity/singularity:v3.7.3
         with:
           entrypoint: /bin/bash
-          args: -c "chmod 755 -R /github/workspace/ && ls -al /github/workspace/.gitlabci/ && /github/workspace/.gitlabci/build.sh Singularity"   
+          args: -c "chmod 755 -R /github/workspace/ && /github/workspace/.gitlabci/build.sh Singularity ; pwd && ls -al "
+
+      - uses: actions/upload-artifact@v2
+        if: ${{ always() }}
+        with:
+          name: artifacts
+          path: |
+            /home/runner/work/singularity-gha-docker/singularity-gha-docker/Singularity.sif
+            /home/runner/work/singularity-gha-docker/singularity-gha-docker/Singularity
