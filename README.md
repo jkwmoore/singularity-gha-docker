@@ -71,7 +71,7 @@ as an input argument to the [build script](.gitlabci/build.sh). You could add an
 recipe, and then of course call the build to happen more than once.
 The build script will name the image based on the recipe, and you of course
 can change this. Just write the path to it (relative to the repository base) in
-your [.gitlab-ci.yml](.gitlab-ci.yml).
+your [.github/workflows/build.yml](.github/workflows/build.yml).
 
 
 ### 3. Configure Singularity
